@@ -43,6 +43,7 @@ class ProductOverviewScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Mağzaaa"),
+        centerTitle: true,
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(10),

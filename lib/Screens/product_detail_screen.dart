@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/Models/product.dart';
+import 'package:shop_app/Providers/product.dart';
 
 // ignore: use_key_in_widget_constructors
 class ProductDetailScreen extends StatelessWidget {

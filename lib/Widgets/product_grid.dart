@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/Providers/product.dart';
 import 'package:shop_app/Providers/product_provider.dart';
 import 'package:shop_app/Widgets/product_item.dart';
 
@@ -8,13 +9,14 @@ class ProductGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
-    final products = productProvider.items;
+    final List<Product> products = productProvider.items;
 
     return GridView.builder(
       padding: const EdgeInsets.all(10),
       itemCount: products.length,
-      itemBuilder: (BuildContext context, int index) => ProductItem(
-        product: products[index],
+      itemBuilder: (BuildContext context, int index) => ChangeNotifierProvider(
+        create: (BuildContext context) => products[index],
+        child: ProductItem(),
       ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,

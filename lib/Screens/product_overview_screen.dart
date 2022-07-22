@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/Providers/cart.dart';
+import 'package:shop_app/Screens/cart_screen.dart';
 import 'package:shop_app/Widgets/badge.dart';
 import 'package:shop_app/Widgets/product_grid.dart';
 
@@ -26,6 +27,19 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
       appBar: AppBar(
         title: const Text("Magzaaa"),
         actions: <Widget>[
+          Consumer<Cart>(
+              builder: (BuildContext context, cart, Widget? child) => Badge(
+                    child: child ?? Container(), //Todo if null return
+                    value: cart.itemCount.toString(),
+                  ),
+              child: IconButton(
+                icon: const Icon(
+                  Icons.shopping_cart,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(CartScreen.routeName);
+                },
+              )),
           PopupMenuButton(
             icon: const Icon(Icons.more_vert),
             onSelected: (FilterOptions value) {
@@ -44,18 +58,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
               const PopupMenuItem(
                   value: FilterOptions.all, child: Text("Show ALl")),
             ],
-          ),
-          Consumer<Cart>(
-              builder: (BuildContext context, cart, Widget? child) => Badge(
-                    child: child ?? Container(), //Todo if null return
-                    value: cart.itemCount.toString(),
-                  ),
-              child: IconButton(
-                icon: const Icon(
-                  Icons.shopping_cart,
-                ),
-                onPressed: () {},
-              ))
+          )
         ],
         centerTitle: true,
       ),

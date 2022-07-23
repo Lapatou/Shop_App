@@ -33,7 +33,7 @@ class Cart with ChangeNotifier {
           productId,
           (existingCardItem) => CartItem(
                 id: existingCardItem.id,
-                title: existingCardItem.id,
+                title: existingCardItem.title,
                 quantity: existingCardItem.quantity + 1,
                 price: existingCardItem.price,
               ));

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/Providers/cart.dart' show Cart;
+import 'package:shop_app/Providers/orders.dart';
 import 'package:shop_app/Widgets/cart_item.dart';
 
 class CartScreen extends StatelessWidget {
@@ -16,7 +17,14 @@ class CartScreen extends StatelessWidget {
       ),
       persistentFooterButtons: [
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<Orders>(context, listen: false).addOrder(
+                cart.items.values.toList(),
+                cart.totalAmound,
+              );
+              cart.clear();
+              //Navigator.of(context).pushNamed(OrderScreen.routeName);
+            },
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Row(

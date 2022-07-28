@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/Providers/cart.dart';
 import 'package:shop_app/Screens/cart_screen.dart';
+import 'package:shop_app/Widgets/app_drawer.dart';
 import 'package:shop_app/Widgets/badge.dart';
 import 'package:shop_app/Widgets/product_grid.dart';
 
@@ -13,6 +14,7 @@ enum FilterOptions {
 
 class ProductOverviewScreen extends StatefulWidget {
   const ProductOverviewScreen({Key? key}) : super(key: key);
+  static const String routeName = "/";
 
   @override
   State<ProductOverviewScreen> createState() => _ProductOverviewScreenState();
@@ -24,6 +26,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         title: const Text("Magzaaa"),
         actions: <Widget>[

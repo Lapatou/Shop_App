@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/Providers/product.dart';
+import 'package:shop_app/Widgets/app_drawer.dart';
 
 // ignore: use_key_in_widget_constructors
 class ProductDetailScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class ProductDetailScreen extends StatelessWidget {
     final product = ModalRoute.of(context)!.settings.arguments as Product;
 
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         centerTitle: true,
         title: Text(

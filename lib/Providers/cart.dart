@@ -18,7 +18,9 @@ class Cart with ChangeNotifier {
   Map<String, CartItem> _items = {};
 
   Map<String, CartItem> get items => {..._items};
+
   int get itemCount => _items.length;
+
   double get totalAmound {
     double total = 0;
     _items.forEach((key, cartItem) {
@@ -52,6 +54,23 @@ class Cart with ChangeNotifier {
 
   void removeItem(String productId) {
     _items.remove(productId);
+    notifyListeners();
+  }
+
+  void removeSingleItem(String productId) {
+    if (!_items.containsKey(productId)) return;
+    if (_items[productId]!.quantity > 1) {
+      _items.update(
+        productId,
+        (existingProduct) => CartItem(
+            id: existingProduct.id,
+            title: existingProduct.title,
+            quantity: existingProduct.quantity - 1,
+            price: existingProduct.price),
+      );
+    } else {
+      _items.remove(productId);
+    }
     notifyListeners();
   }
 

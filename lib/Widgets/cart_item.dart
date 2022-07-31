@@ -40,19 +40,19 @@ class CartItem extends StatelessWidget {
       confirmDismiss: (direction) {
         return showDialog(
           context: context,
-          builder: (context) {
-            AlertDialog(
+          builder: (ctx) {
+            return AlertDialog(
               title: const Text("Are you sure?"),
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop(false);
+                    Navigator.of(ctx).pop(false);
                   },
                   child: const Text("NO!"),
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop(true);
+                    Navigator.of(ctx).pop(true);
                   },
                   child: const Text("YES!"),
                 ),

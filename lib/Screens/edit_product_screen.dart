@@ -100,6 +100,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   onFieldSubmitted: (value) {
                     FocusScope.of(context).requestFocus(_descriptionFocusNode);
                   },
+                  validator: (value) {
+                    if (value == null) return "Please enter the price";
+                    if (value.isEmpty) return "Please enter the price";
+                    if ((double.tryParse(value) ?? -1) <= 0.0) {
+                      return "Negative value not accepted";
+                    }
+                    return null;
+                  },
                   onSaved: (newValue) {
                     _editedProduct = Product(
                       id: _editedProduct.id,
@@ -115,6 +123,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   maxLines: 3,
                   keyboardType: TextInputType.multiline,
                   focusNode: _descriptionFocusNode,
+                  validator: (value) {
+                    if (value == null) return "Description is empty";
+                    if (value.isEmpty) return "Description is empty";
+                    return null;
+                  },
                   onSaved: (newValue) {
                     _editedProduct = Product(
                       id: _editedProduct.id,
@@ -155,6 +168,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         controller: _imgUrlController,
                         focusNode: _imgUrlFocusNode,
                         onFieldSubmitted: (value) => _saveForm(),
+                        validator: (value) {
+                          if (value == null) return "Image URL is empty";
+                          if (value.isEmpty) return "Image URL is empty";
+                          return null;
+                        },
                         onSaved: (newValue) {
                           _editedProduct = Product(
                             id: _editedProduct.id,
